@@ -15,8 +15,6 @@ router.post("/", async (req, res) => {
   try {
     const product = new Products();
     const productData = req.body;
-    // console.log("be product object:",productData)
-
     const savedProduct = await product.createProduct(req, productData);
 
     res.status(201).json(savedProduct);
@@ -88,7 +86,7 @@ router.get("/scrape/:url", async (req, res) => {
 
     let srcList =
       $("div.gallery-preview-panel img").first().attr("src") ||
-      $("div#imgTagWrapperId").find("img.a-dynamic-image").first().attr("src");
+      $("div.imgTagWrapper").find("img.a-dynamic-image").first().attr("src");
 
     const title =
       $("div.pdp-mod-product-badge-wrapper h1").text() ||
